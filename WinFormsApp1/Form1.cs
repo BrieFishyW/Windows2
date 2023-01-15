@@ -22,11 +22,23 @@ namespace WinFormsApp1
         private int[] rollCount = new int[6];
 
 
-
+        /// <summary>
+        /// Sets up the Form and sets all data to game start.
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
+            ResetEverything();
+        }
+
+        /// <summary>
+        /// Calls the functions that reset each part of game data/display to game start.
+        /// </summary>
+        private void ResetEverything()
+        {
+            ResetData();
             SetRtbData();
+            ResetPicDie();
         }
 
 
@@ -54,9 +66,9 @@ namespace WinFormsApp1
 
 
         /// <summary>
-        /// resetData resets all of the game data, such as when the player presses the reset button.
+        /// ResetData resets all of the game data to 0 for a game start.
         /// </summary>
-        private void resetData()
+        private void ResetData()
         {
             plays= 0;
             wins= 0;
@@ -64,6 +76,24 @@ namespace WinFormsApp1
             rollCount = new int[6];
 
             SetRtbData();
+        }
+
+        /// <summary>
+        /// ResetPicDie sets the image of component picDie to a blank die for game start.
+        /// </summary>
+        private void ResetPicDie()
+        {
+            picDie.Image = Image.FromFile("blank.png");
+        }
+
+        /// <summary>
+        /// Calls ResetEverything to reset the form back to Game Start.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            ResetEverything();
         }
     }
 }

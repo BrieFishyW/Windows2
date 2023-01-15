@@ -133,6 +133,7 @@
             // 
             // picDie
             // 
+            this.picDie.InitialImage = global::WinFormsApp1.Properties.Resources.blank;
             this.picDie.Location = new System.Drawing.Point(46, 235);
             this.picDie.Name = "picDie";
             this.picDie.Size = new System.Drawing.Size(128, 128);
@@ -158,6 +159,7 @@
             this.btnReset.Text = "Reset";
             this.btnReset.UseCompatibleTextRendering = true;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // rtbData
             // 
