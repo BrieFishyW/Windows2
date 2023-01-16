@@ -82,6 +82,10 @@ namespace Assignment2._2
             guessCount = new int[6];
             rollCount = new int[6];
 
+            lblPlayedNum.Text = plays.ToString();
+            lblWonNum.Text = wins.ToString();
+            lblLostNum.Text = (plays - wins).ToString();
+
             SetRtbData();
         }
 
@@ -106,33 +110,51 @@ namespace Assignment2._2
 
         /// <summary>
         /// Rolls the dice, then updates the necessary game information
-        /// TODO: Implement the guessing feature
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnRoll_Click(object sender, EventArgs e)
         {
-            // TODO: Get user input and validate
+            // Make the error text invisible if it wasn't already
+            lblError.Visible = false;
 
             // Pick a random number 1-6
             int roll = die.Next(1, 7);
 
-            // Set the picture to show the correct die face
-            String dieFile = String.Concat(roll, ".png");
-            picDie.Image = Image.FromFile(dieFile);
-            txtGuess.Text = roll.ToString();
+            // Get user input and validate
+            String input = txtGuess.Text;
+            try
+            {
+                int guess = Convert.ToInt32(input);
 
-            // Update the game data
-            plays++;
-            // TODO: Check for win
-            // TODO: increment GuessCount
-            rollCount[roll - 1]++;
+                // Make sure the number fits the range
+                if (guess < 1 || guess > 6) 
+                {
+                    lblError.Visible = true;
+                    return;
+                }
+                
+                // TODO: Simulate rolling
+                // Set the picture to show the correct die face
+                String dieFile = String.Concat(roll, ".png");
+                picDie.Image = Image.FromFile(dieFile);
 
-            // Update the data display
-            lblPlayedNum.Text = plays.ToString();
-            lblWonNum.Text = wins.ToString();
-            lblLostNum.Text = (plays - wins).ToString();
-            SetRtbData();
+                // Update the game data
+                plays++;
+                if (guess == roll) wins++;
+                guessCount[guess - 1]++;
+                rollCount[roll - 1]++;
+
+                // Update the data display
+                lblPlayedNum.Text = plays.ToString();
+                lblWonNum.Text = wins.ToString();
+                lblLostNum.Text = (plays - wins).ToString();
+                SetRtbData();
+            } catch
+            {
+                // If we can't get a proper number, show the error
+                lblError.Visible = true;
+            }
         }
     }
 

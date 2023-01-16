@@ -41,6 +41,7 @@
             this.btnRoll = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.rtbData = new System.Windows.Forms.RichTextBox();
+            this.lblError = new System.Windows.Forms.Label();
             this.gbxGameInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picDie)).BeginInit();
             this.SuspendLayout();
@@ -167,11 +168,23 @@
             this.rtbData.TabIndex = 6;
             this.rtbData.Text = "";
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblError.Location = new System.Drawing.Point(18, 175);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(175, 20);
+            this.lblError.TabIndex = 7;
+            this.lblError.Text = "Error: Enter a number 1-6";
+            this.lblError.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 604);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.rtbData);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnRoll);
@@ -204,5 +217,6 @@
         private Button btnRoll;
         private Button btnReset;
         private RichTextBox rtbData;
+        private Label lblError;
     }
 }
