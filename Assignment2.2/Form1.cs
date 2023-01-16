@@ -49,6 +49,7 @@ namespace Assignment2._2
         {
             InitializeComponent();
             ResetEverything();
+            txtGuess.MaxLength = 1;
         }
 
         /// <summary>
