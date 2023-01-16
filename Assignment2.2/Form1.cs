@@ -121,7 +121,7 @@ namespace Assignment2._2
         }
 
         /// <summary>
-        /// Rolls the dice, then updates the necessary game information
+        /// Validates user input, then starts the die rolling
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -155,6 +155,12 @@ namespace Assignment2._2
             }
         }
 
+        /// <summary>
+        /// tmrRoll controlls the die rolling animation. 
+        /// It will roll it for a moment, stop itself, and then trigger the game calculations.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tmrRoll_Tick(object sender, EventArgs e)
         {
             timerRoll++;
@@ -174,6 +180,10 @@ namespace Assignment2._2
             } 
         }
 
+        /// <summary>
+        /// After the die rolling animation is finished, this makes the game calculations.
+        /// It updates everything else in the GUI.
+        /// </summary>
         private void DieRolled()
         {
             // Update the game data
