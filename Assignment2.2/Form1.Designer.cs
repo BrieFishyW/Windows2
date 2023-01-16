@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbxGameInfo = new System.Windows.Forms.GroupBox();
             this.lblLostNum = new System.Windows.Forms.Label();
             this.lblWonNum = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.rtbData = new System.Windows.Forms.RichTextBox();
             this.lblError = new System.Windows.Forms.Label();
+            this.tmrRoll = new System.Windows.Forms.Timer(this.components);
             this.gbxGameInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picDie)).BeginInit();
             this.SuspendLayout();
@@ -179,6 +181,10 @@
             this.lblError.Text = "Error: Enter a number 1-6";
             this.lblError.Visible = false;
             // 
+            // tmrRoll
+            // 
+            this.tmrRoll.Tick += new System.EventHandler(this.tmrRoll_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -218,5 +224,6 @@
         private Button btnReset;
         private RichTextBox rtbData;
         private Label lblError;
+        private System.Windows.Forms.Timer tmrRoll;
     }
 }

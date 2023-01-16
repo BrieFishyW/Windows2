@@ -28,6 +28,18 @@ namespace Assignment2._2
         /// die is used to generate a random number when the die is rolled.
         /// </summary>
         private Random die = new Random();
+        /// <summary>
+        /// Used in animating the dice to count how many times it has changed
+        /// </summary>
+        private int timerRoll = 0;
+        /// <summary>
+        /// Tracks the current roll so that multiple methods can use it
+        /// </summary>
+        private int currentRoll = 0;
+        /// <summary>
+        /// Tracks the current guess so that multiple methods can use it
+        /// </summary>
+        private int currentGuess = 0;
 
 
         /// <summary>
@@ -118,9 +130,6 @@ namespace Assignment2._2
             // Make the error text invisible if it wasn't already
             lblError.Visible = false;
 
-            // Pick a random number 1-6
-            int roll = die.Next(1, 7);
-
             // Get user input and validate
             String input = txtGuess.Text;
             try
@@ -133,28 +142,51 @@ namespace Assignment2._2
                     lblError.Visible = true;
                     return;
                 }
+
+                currentGuess = guess;
                 
-                // TODO: Simulate rolling
-                // Set the picture to show the correct die face
-                String dieFile = String.Concat(roll, ".png");
-                picDie.Image = Image.FromFile(dieFile);
-
-                // Update the game data
-                plays++;
-                if (guess == roll) wins++;
-                guessCount[guess - 1]++;
-                rollCount[roll - 1]++;
-
-                // Update the data display
-                lblPlayedNum.Text = plays.ToString();
-                lblWonNum.Text = wins.ToString();
-                lblLostNum.Text = (plays - wins).ToString();
-                SetRtbData();
+                // Start animation for the dice roll
+                tmrRoll.Start();
+                
             } catch
             {
                 // If we can't get a proper number, show the error
                 lblError.Visible = true;
             }
+        }
+
+        private void tmrRoll_Tick(object sender, EventArgs e)
+        {
+            timerRoll++;
+
+            // Pick a random number 1-6
+            currentRoll = die.Next(1, 7);
+            
+            // Set the picture to show the right die
+            String dieFile = String.Concat(currentRoll, ".png");
+            picDie.Image = Image.FromFile(dieFile);
+
+            if (timerRoll == 15)
+            {
+                tmrRoll.Stop();
+                DieRolled();
+                timerRoll = 0;
+            } 
+        }
+
+        private void DieRolled()
+        {
+            // Update the game data
+            plays++;
+            if (currentGuess == currentRoll) wins++;
+            guessCount[currentGuess - 1]++;
+            rollCount[currentRoll - 1]++;
+
+            // Update the data display
+            lblPlayedNum.Text = plays.ToString();
+            lblWonNum.Text = wins.ToString();
+            lblLostNum.Text = (plays - wins).ToString();
+            SetRtbData();
         }
     }
 
